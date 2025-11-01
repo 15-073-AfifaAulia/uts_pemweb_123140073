@@ -1,32 +1,32 @@
 import React, { useState } from 'react';
 import Header from './components/Header';
 import SearchForm from './components/SearchForm';
+import RecipeList from './components/RecipeList';
+import RecipeModal from './components/RecipeModal'; // 1. IMPORT MODAL
 import { Container, Spinner, Alert } from 'react-bootstrap';
 import axios from 'axios';
 
 function App() {
-  // State untuk menyimpan hasil pencarian
   const [recipes, setRecipes] = useState([]);
-  // State untuk status loading
   const [isLoading, setIsLoading] = useState(false);
-  // State untuk pesan error
   const [error, setError] = useState(null);
 
-  // Fungsi ini akan dipanggil oleh SearchForm
+  // 2. STATE BARU UNTUK MODAL
+  const [selectedMealId, setSelectedMealId] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+
+  // Fungsi handleSearch tetap SAMA
   const handleSearch = async (term, category) => {
     setIsLoading(true); 
     setError(null);
     setRecipes([]);
 
-    console.log(`Mencari resep... Term: ${term}, Category: ${category}`);
-
     try {
       let searchUrl = '';
+
       if (term) {
-        // Jika ada input teks, utamakan cari berdasarkan nama
         searchUrl = `https://www.themealdb.com/api/json/v1/1/search.php?s=${term}`;
       } else if (category) {
-        // Jika tidak ada input teks tapi ada kategori, cari berdasarkan kategori
         searchUrl = `https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`;
       } else {
         setError('Silakan masukkan nama resep atau pilih kategori.');
@@ -47,20 +47,32 @@ function App() {
       console.error('Error fetching recipes:', err);
       setError('Gagal mengambil data. Silakan coba lagi nanti.');
     } finally {
-      // Set loading jadi false setelah selesai (baik sukses atau error)
       setIsLoading(false);
     }
   };
+
+  // 3. PERBARUI HANDLER CARD CLICK
+  const handleSelectRecipe = (id) => {
+    console.log(`Resep dipilih dengan ID: ${id}`);
+    setSelectedMealId(id); // Simpan ID resep yang diklik
+    setShowModal(true); // Buka modal
+  };
+
+  // 4. BUAT FUNGSI UNTUK MENUTUP MODAL
+  const handleCloseModal = () => {
+    setShowModal(false);
+    setSelectedMealId(null); // Reset ID saat modal ditutup
+  };
+
 
   return (
     <div className="App">
       <Header />
       
       <Container>
-        {}
         <SearchForm onSearch={handleSearch} setIsLoading={setIsLoading} />
 
-        {}
+        {/* Bagian ini tetap sama */}
         <div className="mt-4">
           {isLoading && (
             <div className="text-center">
@@ -73,17 +85,27 @@ function App() {
             <Alert variant="danger">{error}</Alert>
           )}
 
-          {!isLoading && !error && (
-            <div>
-              {}
-              <h3>Hasil Pencarian: ({recipes.length} resep ditemukan)</h3>
-              <pre style={{backgroundColor: '#f0f0f0', padding: '10px', borderRadius: '5px'}}>
-                {JSON.stringify(recipes, null, 2)}
-              </pre>
-            </div>
+          {!isLoading && !error && recipes.length > 0 && (
+            <RecipeList 
+              recipes={recipes} 
+              onSelectRecipe={handleSelectRecipe} 
+            />
+          )}
+          
+          {!isLoading && !error && recipes.length === 0 && (
+            <Alert variant="info">
+              Silakan cari resep atau pilih kategori untuk memulai.
+            </Alert>
           )}
         </div>
       </Container>
+      
+      {/* 5. RENDER MODAL DI SINI (di luar Container agar bisa fullscreen) */}
+      <RecipeModal 
+        mealId={selectedMealId}
+        show={showModal}
+        onHide={handleCloseModal}
+      />
     </div>
   );
 }
