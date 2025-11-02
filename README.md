@@ -56,7 +56,7 @@ Berikut adalah langkah-langkah untuk menjalankan proyek ini di perangkat lokal A
 1.  **Clone repository ini:**
     ```bash
     git clone [URL_GITHUB_ANDA]
-    # Contoh: git clone [https://github.com/15-073-AfifaAulia/uts_pemweb_123140073](https://github.com/15-073-AfifaAulia/uts_pemweb_123140073)
+    # Contoh: git clone https://github.com/15-073-AfifaAulia/uts_pemweb_123140073
     ```
 
 2.  **Masuk ke direktori proyek:**
@@ -84,4 +84,4 @@ Berikut adalah langkah-langkah untuk menjalankan proyek ini di perangkat lokal A
 ## 📸 Screenshot Aplikasi
 
 Berikut adalah tampilan dari aplikasi yang sudah berjalan.
-![Tampilan Aplikasi Recipe Finder](Screenshot 2025-11-02 130403.png)
+![Tampilan Aplikasi Recipe Finder](Screenshot%202025-11-02%20130403.png)
