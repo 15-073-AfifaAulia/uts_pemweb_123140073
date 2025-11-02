@@ -3,10 +3,10 @@ import { Navbar, Container } from 'react-bootstrap';
 
 function Header() {
   return (
-    <Navbar bg="dark" variant="dark" expand="lg" className="mb-4">
+    <Navbar bg='dark' variant="dark" expand="lg" sticky="top">
       <Container>
         <Navbar.Brand href="#home">
-          🍳 Recipe Finder (UTS - NIM Akhiran 3)
+          Galeri Resep Afifa (UTS - 123140073)
         </Navbar.Brand>
       </Container>
     </Navbar>

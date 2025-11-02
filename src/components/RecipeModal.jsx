@@ -11,9 +11,7 @@ function RecipeModal({ mealId, show, onHide }) {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  // useEffect ini akan berjalan setiap kali 'mealId' berubah
   useEffect(() => {
-    // Hanya fetch jika ada mealId dan modal sedang 'show'
     if (mealId && show) {
       const fetchRecipeDetail = async () => {
         setIsLoading(true);
@@ -25,7 +23,7 @@ function RecipeModal({ mealId, show, onHide }) {
           const response = await axios.get(url);
           
           if (response.data.meals && response.data.meals.length > 0) {
-            setRecipe(response.data.meals[0]); // Ambil resep pertama dari array
+            setRecipe(response.data.meals[0]);
           } else {
             setError('Detail resep tidak ditemukan.');
           }
@@ -39,7 +37,7 @@ function RecipeModal({ mealId, show, onHide }) {
 
       fetchRecipeDetail();
     }
-  }, [mealId, show]); // <-- Dependensi: jalankan ulang jika mealId atau show berubah
+  }, [mealId, show]);
 
   // Helper function untuk merender daftar bahan
   const renderIngredients = () => {
@@ -81,7 +79,6 @@ function RecipeModal({ mealId, show, onHide }) {
           <Alert variant="danger">{error}</Alert>
         )}
 
-        {/* Hanya tampilkan jika TIDAK loading, TIDAK error, dan ADA resep */}
         {!isLoading && !error && recipe && (
           <>
             <Image src={recipe.strMealThumb} alt={recipe.strMeal} fluid rounded className="mb-3" />
@@ -92,9 +89,7 @@ function RecipeModal({ mealId, show, onHide }) {
             </ListGroup>
 
             <h4>Instruksi Memasak</h4>
-            {/* Beberapa instruksi memiliki newline (\n). 
-              Gunakan 'whiteSpace: pre-wrap' untuk menghormati newline tersebut.
-            */}
+
             <p style={{ whiteSpace: 'pre-wrap' }}>
               {recipe.strInstructions}
             </p>

@@ -10,13 +10,11 @@ function RecipeCard({ recipe, onSelectRecipe }) {
 
   return (
     // Kita bungkus Card di dalam Col agar bisa masuk ke layout grid
-    // md={4} -> 3 kartu per baris di tablet
-    // lg={3} -> 4 kartu per baris di desktop
     <Col md={4} lg={3} className="mb-4">
       <Card
-        className="h-100" // h-100 membuat semua kartu sama tinggi
-        onClick={() => onSelectRecipe(idMeal)} // Memanggil fungsi dari App saat diklik
-        style={{ cursor: 'pointer' }} // Mengubah kursor jadi 'pointer' saat di-hover
+        className="h-100"
+        onClick={() => onSelectRecipe(idMeal)}
+        style={{ cursor: 'pointer' }}
       >
         <Card.Img variant="top" src={strMealThumb} alt={strMeal} />
         <Card.Body>

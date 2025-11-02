@@ -14,8 +14,6 @@ Aplikasi ini telah di-deploy dan dapat diakses secara publik melalui link beriku
 
 **[https://link-deployment-vercel-anda.vercel.app/](https://link-deployment-vercel-anda.vercel.app/)**
 
-_(Catatan: Ganti URL di atas dengan link Vercel Anda yang sebenarnya)_
-
 ---
 
 ## 📝 Deskripsi Aplikasi
@@ -58,13 +56,13 @@ Berikut adalah langkah-langkah untuk menjalankan proyek ini di perangkat lokal A
 1.  **Clone repository ini:**
     ```bash
     git clone [URL_GITHUB_ANDA]
-    # Contoh: git clone [https://github.com/username/uts-pemweb-122140xxx.git](https://github.com/username/uts-pemweb-122140xxx.git)
+    # Contoh: git clone [https://github.com/15-073-AfifaAulia/uts_pemweb_123140073](https://github.com/15-073-AfifaAulia/uts_pemweb_123140073)
     ```
 
 2.  **Masuk ke direktori proyek:**
     ```bash
-    cd uts-pemweb-[NIM ANDA]
-    # Contoh: cd uts-pemweb-122140xxx
+    cd uts-pemweb-123140073
+    # Contoh: cd uts-pemweb-122140073
     ```
 
 3.  **Install semua dependencies (library) yang dibutuhkan:**
@@ -79,14 +77,11 @@ Berikut adalah langkah-langkah untuk menjalankan proyek ini di perangkat lokal A
 
 5.  Buka browser Anda dan akses [http://localhost:5173/](http://localhost:5173/) (atau port lain yang ditampilkan di terminal Anda).
 
-**Catatan API Key:** Studi kasus (Digit 3 - TheMealDB) ini menggunakan API publik yang **tidak memerlukan API Key**. Oleh karena itu, tidak diperlukan konfigurasi file `.env` untuk menjalankan proyek ini.
+**Catatan API Key:** Studi kasus (Digit 3 - TheMealDB) ini menggunakan API publik yang **tidak memerlukan API Key**.
 
 ---
 
 ## 📸 Screenshot Aplikasi
 
 Berikut adalah tampilan dari aplikasi yang sudah berjalan.
-
-_(**Instruksi:** Ambil screenshot aplikasi Anda, tambahkan ke folder proyek, dan ganti link di bawah ini. Anda bisa drag-and-drop gambar ke GitHub untuk mendapatkan link.)_
-
-![Tampilan Aplikasi Recipe Finder](https://via.placeholder.com/800x450.png?text=GANTI+DENGAN+SCREENSHOT+APLIKASI+ANDA)
+![Tampilan Aplikasi Recipe Finder](Screenshot 2025-11-02 130403.png)

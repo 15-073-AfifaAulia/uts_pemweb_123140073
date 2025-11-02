@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Form, Row, Col, Button, Spinner, ButtonGroup } from 'react-bootstrap'; // 1. Import ButtonGroup
+import { Form, Row, Col, Button, Spinner, ButtonGroup } from 'react-bootstrap';
 import axios from 'axios';
 
-// 2. Tambahkan props baru: 'onRandom' dan 'isMainLoading'
 function SearchForm({ onSearch, onRandom, setIsLoading, isMainLoading }) {
   const [categories, setCategories] = useState([]);
   const [areas, setAreas] = useState([]); 
@@ -45,25 +44,20 @@ function SearchForm({ onSearch, onRandom, setIsLoading, isMainLoading }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setIsLoading(true); // Ini adalah loading untuk pencarian
+    setIsLoading(true);
     onSearch(searchTerm, selectedCategory, selectedArea); 
   };
-  
-  // 3. Buat handler untuk tombol acak
+
   const handleRandomClick = () => {
-    // Kosongkan form (opsional, tapi rapi)
     setSearchTerm('');
     setSelectedCategory('');
     setSelectedArea('');
-    // Panggil fungsi 'onRandom' dari App.jsx
     onRandom(); 
   };
 
   return (
     <Form onSubmit={handleSubmit} className="mb-4">
-      {/* 4. Sesuaikan layout grid (md="4", md="3", md="3", md="2") */}
       <Row className="align-items-end gy-3">
-        {/* Input Teks Pencarian */}
         <Form.Group as={Col} md="4" controlId="formSearchTerm">
           <Form.Label>Cari berdasarkan Nama Resep</Form.Label>
           <Form.Control
@@ -71,18 +65,17 @@ function SearchForm({ onSearch, onRandom, setIsLoading, isMainLoading }) {
             placeholder="Contoh: Chicken..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            disabled={isMainLoading} // Disable saat loading
+            disabled={isMainLoading}
           />
         </Form.Group>
 
-        {/* Dropdown Kategori */}
         <Form.Group as={Col} md="3" controlId="formCategory">
           <Form.Label>Kategori</Form.Label>
           {isLoadingCategories ? ( <Spinner animation="border" size="sm" /> ) : (
             <Form.Select
               value={selectedCategory}
               onChange={(e) => setSelectedCategory(e.target.value)}
-              disabled={isMainLoading} // Disable saat loading
+              disabled={isMainLoading}
             >
               <option value="">Semua Kategori</option>
               {categories.map((category) => (
@@ -94,7 +87,6 @@ function SearchForm({ onSearch, onRandom, setIsLoading, isMainLoading }) {
           )}
         </Form.Group>
         
-        {/* Dropdown Area */}
         <Form.Group as={Col} md="3" controlId="formArea">
           <Form.Label>Area (Country)</Form.Label>
           {isLoadingAreas ? ( <Spinner animation="border" size="sm" /> ) : (
@@ -113,21 +105,20 @@ function SearchForm({ onSearch, onRandom, setIsLoading, isMainLoading }) {
           )}
         </Form.Group>
 
-        {/* 5. Grup Tombol Submit & Acak */}
         <Col md="2" className="d-grid">
           <ButtonGroup>
             <Button 
               variant="primary" 
               type="submit" 
-              disabled={isMainLoading} // Disable saat loading
+              disabled={isMainLoading}
             >
               Cari
             </Button>
             <Button 
               variant="info" 
-              type="button" // PENTING: type="button" agar tidak submit form
+              type="button"
               onClick={handleRandomClick} 
-              disabled={isMainLoading} // Disable saat loading
+              disabled={isMainLoading}
               title="Cari Resep Acak"
             >
               🎲
