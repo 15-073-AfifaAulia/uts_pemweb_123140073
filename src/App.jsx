@@ -17,11 +17,6 @@ function App() {
   // State untuk modal detail resep
   const [selectedMealId, setSelectedMealId] = useState(null);
   const [showModal, setShowModal] = useState(false);
-
-  /**
-   * Dipanggil oleh SearchForm saat tombol "Cari" ditekan.
-   * Menerapkan logika prioritas: 1. Nama, 2. Kategori, 3. Area.
-   */
   const handleSearch = async (term, category, area) => {
     setIsLoading(true); 
     setError(null);
